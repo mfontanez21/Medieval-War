@@ -33,3 +33,11 @@ body {
   font-weight: bold;
   border: 2px solid #202d7a;
 }
+
+.resetBtn {
+  margin-top: 2vh;
+  color: white;
+  background-color: red;
+  font-weight: bold;
+  border: 2px, 4px solid red;
+}
