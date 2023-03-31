@@ -41,8 +41,11 @@ console.log(gameDeck);
 
 function splitDeck(){
   shuffleDeck(gameDeck)
-  
+  console.log(gameDeck.slice(0, 25));
+  console.log(gameDeck.slice(26, 51));
 }
+splitDeck(gameDeck)
+
 
 function handleClickPlayer1() {
 
