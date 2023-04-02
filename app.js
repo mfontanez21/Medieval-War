@@ -8,7 +8,7 @@ let removedCardPlayer
 let removedCardComp
 let playerCaptured = []
 let computerCaptured = []
-
+let warCaptured = []
 
 let gameDeck = ["d14","d12","d13","d11","d10","d09","d08","d07","d06","d05","d04","d03","d02","h14","h12","h13","h11","h10","h09","h08","h07","h06","h05","h04","h03","h02","c14","c12","c13","c11","c10","c09","c08","c07","c06","c05","c04","c03","c02","s14","s12","s13","s11","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
 
@@ -62,7 +62,7 @@ console.log(computerDeck);
 
 function handleClickPlayer() {
 
-  if (playerDeck.length > 0) {  
+  if (playerDeck.length >= 0) {  
 
 		let randIdx = Math.floor(Math.random()*playerDeck.length)
   
@@ -71,45 +71,30 @@ function handleClickPlayer() {
 		playerPlayZone.push(cardPicked) 
 
 		renderPlayer1(cardPicked)
-
-    let convertedCard = cardPicked.toString()
-    convertedCard.slice(1)
-    console.log(convertedCard);
-  if (computerDeck.length > 0) {  
+  if (computerDeck.length >= 0) {  
     
     let randIdx = Math.floor(Math.random()*computerDeck.length)
     
     let compCardPicked = computerDeck.splice(randIdx, 1)[0]
 
-	 
 		computerPlayZone.push(compCardPicked) 
 
 	  
 		renderPlayer2(compCardPicked)
 
-    if (cardPicked.numb > compCardPicked.numb){
-      playerCaptured.unshift(compCardPicked)
-      let capture = playerDeck.pop()
-      playerCaptured.unshift(capture)
-      computerDeck.pop()
-  } else if (cardPicked.numb > compCardPicked.numb) {
-      computerCaptured.unshift(cardPicked)
-      let cCapture = computerDeck.pop
-      computerCaptured.unshift(cCapture)
-      playerDeck.pop()
-      console.log(cardPicked);
-
-      renderPlayer1()
-      renderPlayer2()
-  }
-    
-  }
+    if (cardPicked.slice(1) > compCardPicked.slice(1)){
+      computerPlayZone.pop(compCardPicked)
+      playerCaptured.push(cardPicked)
+      playerCaptured.push(compCardPicked)
+    } else if (cardPicked.slice(1) < compCardPicked.slice(1)) {
+      playerPlayZone.pop(cardPicked)
+      computerCaptured.push(compCardPicked)
+      computerCaptured.push(cardPicked)
+    } else (cardPicked.slice(1) === compCardPicked.slice(1))
+    console.log("Go to WAR!!");
   }
 }
-
-
-
-
+}
 
 function renderPlayer1(cardPicked) {
   
@@ -117,7 +102,6 @@ function renderPlayer1(cardPicked) {
     deck2El.classList.remove("outline")
   }
 
- 
   if (playerDeck.length >= 0) {  
     deck2El.classList.remove(removedCardPlayer)
   }
@@ -133,7 +117,11 @@ function renderPlayer1(cardPicked) {
   if (playerDeck.length === 0) {  
     deck1El.classList.add("outline");
     deck1El.classList.remove("back-red");
+
+  if (playerPlayZone.length === 0){
+    deck2El.classList.add("outline")
   }
+}
 }
 
 function renderPlayer2(compCardPicked) {
@@ -175,10 +163,20 @@ function renderPlayer2(compCardPicked) {
 //     console.log("Computer Wins");
 //   }
 
-function compareCards(){
-  const playerCard = playerDeck[playerDeck.length-1]
-  const computerCard = computerDeck[computerDeck.length-1]
+function gamePlay (){
+if (cardPicked > compCardPicked){
+  playerCaptured.unshift(compCardPicked)
+  let capture = playerDeck.pop()
+  playerCaptured.unshift(capture)
+  computerDeck.pop()
+} else if (cardPicked.numb > compCardPicked.numb) {
+  computerCaptured.unshift(cardPicked)
+  let cCapture = computerDeck.pop
+  computerCaptured.unshift(cCapture)
+  playerDeck.pop()
+  console.log(cardPicked);
 
-  console.log(playerCard);
-  console.log(computerCard);
+  renderPlayer1()
+  renderPlayer2()
+  }
 }
