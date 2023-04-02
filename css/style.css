@@ -5,6 +5,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 50vmax;
+  font-family: 'MedievalSharp', cursive;
 }
 
 .container {
@@ -23,7 +24,7 @@ body {
 }
 
 .card.shadow {
-  box-shadow: 7px 7px 7px 0 rgba(41, 41, 41, 0.95) !important;
+  box-shadow: 7px 7px 7px 5px rgba(41, 41, 41, 0.95) !important;
 }
 
 .btn {
