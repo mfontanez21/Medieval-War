@@ -9,6 +9,7 @@ let playerCaptured = []
 let computerCaptured = []
 let warCaptured = []
 let warZone = []
+// let playerPoints = playerCaptured(num)
 
 let gameDeck = ["d14","d12","d13","d11","d10","d09","d08","d07","d06","d05","d04","d03","d02","h14","h12","h13","h11","h10","h09","h08","h07","h06","h05","h04","h03","h02","c14","c12","c13","c11","c10","c09","c08","c07","c06","c05","c04","c03","c02","s14","s12","s13","s11","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
 
@@ -38,7 +39,11 @@ function init() {
 
 }
 
-
+// function gameOver {
+//   if (playerDeck.length === 0 && computerDeck.length === 0){
+//     playerPoints
+//   }
+// }
 
 
 function shuffleDeck(array) {
@@ -64,7 +69,7 @@ console.log(computerDeck);
 
 function handleClickPlayer() {
 
-  if (playerDeck.length >= 0) {  
+  if (playerDeck.length > 0) {  
 
 		let randIdx = Math.floor(Math.random()*playerDeck.length)
   
@@ -73,30 +78,32 @@ function handleClickPlayer() {
 		playerPlayZone.push(cardPicked) 
 
 		renderPlayer1(cardPicked)
-  if (computerDeck.length >= 0) {  
-    
-    let randIdx = Math.floor(Math.random()*computerDeck.length)
-    
-    let compCardPicked = computerDeck.splice(randIdx, 1)[0]
+    if (computerDeck.length > 0) {  
+      
+      let randIdx = Math.floor(Math.random()*computerDeck.length)
+      
+      let compCardPicked = computerDeck.splice(randIdx, 1)[0]
 
-		computerPlayZone.push(compCardPicked) 
+      computerPlayZone.push(compCardPicked) 
 
-	  
-		renderPlayer2(compCardPicked)
+      renderPlayer2(compCardPicked)
 
-    if (cardPicked.slice(1) > compCardPicked.slice(1)){
-      computerPlayZone.pop(compCardPicked)
-      playerCaptured.push(cardPicked)
-      playerCaptured.push(compCardPicked)
-    } else if (cardPicked.slice(1) < compCardPicked.slice(1)) {
-      playerPlayZone.pop(cardPicked)
-      computerCaptured.push(compCardPicked)
-      computerCaptured.push(cardPicked)
-    } else 
-    goToWar()
+        if (cardPicked.slice(1) > compCardPicked.slice(1)){
+          computerPlayZone.pop(compCardPicked)
+          playerCaptured.push(cardPicked)
+          playerCaptured.push(compCardPicked)
+        } else if (cardPicked.slice(1) < compCardPicked.slice(1)) {
+          playerPlayZone.pop(cardPicked)
+          computerCaptured.push(compCardPicked)
+          computerCaptured.push(cardPicked)
+        } else 
+        goToWar()
+      }
+    }
   }
-}
-}
+
+  
+
 
 function renderPlayer1(cardPicked) {
   
@@ -152,48 +159,15 @@ function renderPlayer2(compCardPicked) {
 }
 
 
-
-
-
-function gamePlay (){
-if (cardPicked > compCardPicked){
-  playerCaptured.unshift(compCardPicked)
-  let capture = playerDeck.pop()
-  playerCaptured.unshift(capture)
-  computerDeck.pop()
-} else if (cardPicked.numb > compCardPicked.numb) {
-  computerCaptured.unshift(cardPicked)
-  let cCapture = computerDeck.pop
-  computerCaptured.unshift(cCapture)
-  playerDeck.pop()
-  console.log(cardPicked);
-
-  renderPlayer1()
-  renderPlayer2()
-  }
-}
-
 function goToWar(){
-  let warCards = "";
+  let warCards 
 	let length = 0;
 
-
-	//if not able to draw 4 cards, draw as many as possible
+//if not able to draw 4 cards, draw as many as possible
 	if (playerDeck.length < 5 || computerDeck.length < 5) {
 
-		//if computer has less than 4 cards
-		if(playerDeck.length > computerDeck.length) {
-			length = computerDeck.length - 1;
-		}
-
-		//if the player hand has less than 4 cards
-		else if (playerDeck.length < computerDeck.length) {
-			length = playerDeck.length - 1;
-		}
-	}
-
 	//if both decks have greater than four cards
-	else {
+  } else {
 		length = 3;		
 	}
 
@@ -214,31 +188,31 @@ function goToWar(){
 function compareWar(player,comp){
   if((player.slice(1)) > (comp.slice(1))){
     console.log("WIN! Your force CRUSHES the enemy battalion");
-    console.log(player)
-    console.log(comp);
-    console.log(warZone);
-    playerDeck.push.apply(playerCaptured, warZone)
+    playerCaptured.push.apply(warZone, computerPlayZone)
     playerCaptured.push(player)
     playerCaptured.push(comp)
-
+    console.log("Player Win Pile", playerCaptured);
     playerDeck.shift()
     computerDeck.shift()
 
     warZone.length = 0;
-  }
-  else if ((player.slice(1)) < (comp.slice(1))){
+  
+  } else if ((player.slice(1)) < (comp.slice(1))) {
     console.log("LOSS! Your forces have been overrun")
-    computerDeck.push.apply(computerCaptured, warZone)
-    computerCaptured.push.apply(playerCaptured, warZone)
+    console.log("Player card", player)
+    console.log("Computer card", comp);
+    computerCaptured.push.apply(warZone, playerPlayZone)
     computerCaptured.push(player)
     computerCaptured.push(comp)
+    console.log("Computer Win Pile", computerCaptured);
 
     playerDeck.shift()
     computerDeck.shift()
     warZone.length = 0;
+    
   }
 
-  else if ((player.slice(1)) < (comp.slice(1))){
+  else if ((player.slice(1)) === (comp.slice(1))){
     goToWar()
   }
 }
