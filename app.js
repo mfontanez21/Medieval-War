@@ -89,11 +89,11 @@ function handleClickPlayer() {
       renderPlayer2(compCardPicked)
 
         if (cardPicked.slice(1) > compCardPicked.slice(1)){
-          computerPlayZone.pop(compCardPicked)
+          computerPlayZone.pop()
           playerCaptured.push(cardPicked)
           playerCaptured.push(compCardPicked)
         } else if (cardPicked.slice(1) < compCardPicked.slice(1)) {
-          playerPlayZone.pop(cardPicked)
+          playerPlayZone.pop()
           computerCaptured.push(compCardPicked)
           computerCaptured.push(cardPicked)
         } else 
@@ -165,45 +165,48 @@ function goToWar(){
 
 //if not able to draw 4 cards, draw as many as possible
 	if (playerDeck.length < 5 || computerDeck.length < 5) {
-
+    length 
 	//if both decks have greater than four cards
   } else {
 		length = 3;		
 	}
 
 	//take the cards from each deck and push them to the war array
-	for (var i = 0; i < length; i++) {
+	for (let i = 0; i < length; i++) {
 		warZone.push(playerDeck[0]);
-		playerDeck.shift();
+    playerDeck.shift();
 		warZone.push(computerDeck[0]);
 		computerDeck.shift();
-	
+  }
     // console.log("War Happened");
     // handleClickPlayer()
 
     compareWar(playerDeck[0], computerDeck[0]);
 	}
-}
+
 
 function compareWar(player,comp){
   if((player.slice(1)) > (comp.slice(1))){
-    console.log("WIN! Your force CRUSHES the enemy battalion");
-    playerCaptured.push.apply(warZone, computerPlayZone)
-    playerCaptured.push(player)
-    playerCaptured.push(comp)
+    console.log("Player card", player)
+    console.log("Computer card", comp);
     console.log("Player Win Pile", playerCaptured);
+    console.log("WIN! Your force CRUSHES the enemy battalion");
+
+    playerCaptured.push(...warZone)
+    playerCaptured.push(player, comp)
+    playerCaptured.push(playerPlayZone)
+    
+
     playerDeck.shift()
     computerDeck.shift()
-
     warZone.length = 0;
   
   } else if ((player.slice(1)) < (comp.slice(1))) {
     console.log("LOSS! Your forces have been overrun")
     console.log("Player card", player)
     console.log("Computer card", comp);
-    computerCaptured.push.apply(warZone, playerPlayZone)
-    computerCaptured.push(player)
-    computerCaptured.push(comp)
+    computerCaptured.push(...warZone)
+    computerCaptured.push(player, comp)
     console.log("Computer Win Pile", computerCaptured);
 
     playerDeck.shift()
@@ -213,6 +216,8 @@ function compareWar(player,comp){
   }
 
   else if ((player.slice(1)) === (comp.slice(1))){
-    goToWar()
+    console.log("UHOH");
   }
 }
+
+//if there is a value in battleDeck, pull that value and add it to winner pile
