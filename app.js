@@ -177,6 +177,7 @@ function goToWar(){
     playerDeck.shift();
 		warZone.push(computerDeck[0]);
 		computerDeck.shift();
+    console.log(warZone);
   }
     // console.log("War Happened");
     // handleClickPlayer()
@@ -189,13 +190,12 @@ function compareWar(player,comp){
   if((player.slice(1)) > (comp.slice(1))){
     console.log("Player card", player)
     console.log("Computer card", comp);
-    console.log("Player Win Pile", playerCaptured);
     console.log("WIN! Your force CRUSHES the enemy battalion");
 
     playerCaptured.push(...warZone)
     playerCaptured.push(player, comp)
-    playerCaptured.push(playerPlayZone)
-    
+    playerCaptured.push(...computerPlayZone, ...playerPlayZone)
+    console.log("Player Points", playerCaptured);
 
     playerDeck.shift()
     computerDeck.shift()
@@ -207,6 +207,7 @@ function compareWar(player,comp){
     console.log("Computer card", comp);
     computerCaptured.push(...warZone)
     computerCaptured.push(player, comp)
+    computerCaptured.push(...computerPlayZone, ...playerPlayZone)
     console.log("Computer Win Pile", computerCaptured);
 
     playerDeck.shift()
@@ -220,4 +221,10 @@ function compareWar(player,comp){
   }
 }
 
-//if there is a value in battleDeck, pull that value and add it to winner pile
+function checkWinner() {
+  if (playerDeck === 0 && computerDeck === 0){
+  return playerCaptured.length, computerCaptured.length
+  }
+  console.log("You Finished!");
+}
+
