@@ -99,9 +99,11 @@ function handleClickPlayer() {
         } else 
         goToWar()
       }
+      if (playerDeck.length === 0){
+        checkWinner()
     }
   }
-
+}
   
 
 
@@ -163,7 +165,7 @@ function goToWar(){
   let warCards 
 	let length = 0;
 
-//if not able to draw 4 cards, draw as many as possible
+
 	if (playerDeck.length < 5 || computerDeck.length < 5) {
     length 
 	//if both decks have greater than four cards
@@ -179,8 +181,7 @@ function goToWar(){
 		computerDeck.shift();
     console.log(warZone);
   }
-    // console.log("War Happened");
-    // handleClickPlayer()
+
 
     compareWar(playerDeck[0], computerDeck[0]);
 	}
@@ -191,7 +192,6 @@ function compareWar(player,comp){
     console.log("Player card", player)
     console.log("Computer card", comp);
     console.log("WIN! Your force CRUSHES the enemy battalion");
-
     playerCaptured.push(...warZone)
     playerCaptured.push(player, comp)
     playerCaptured.push(...computerPlayZone, ...playerPlayZone)
@@ -200,7 +200,8 @@ function compareWar(player,comp){
     playerDeck.shift()
     computerDeck.shift()
     warZone.length = 0;
-  
+    console.log(warZone);
+    
   } else if ((player.slice(1)) < (comp.slice(1))) {
     console.log("LOSS! Your forces have been overrun")
     console.log("Player card", player)
@@ -213,18 +214,21 @@ function compareWar(player,comp){
     playerDeck.shift()
     computerDeck.shift()
     warZone.length = 0;
-    
+    console.log(warZone);
   }
 
   else if ((player.slice(1)) === (comp.slice(1))){
-    console.log("UHOH");
+    playerCaptured.push(warZone[0,1,2])
+    computerCaptured.push(warZone[3,4,5])
+    console.log("DRAW! Your soldiers live to fight another day");
   }
 }
 
 function checkWinner() {
-  if (playerDeck === 0 && computerDeck === 0){
-  return playerCaptured.length, computerCaptured.length
+  if (playerCaptured.length > computerCaptured.length){
+    console.log("You win! The winds of war blow in your favor");
+  } else {
+    console.log("You lose! The enemy inches closer to total victory");
   }
-  console.log("You Finished!");
 }
 
