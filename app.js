@@ -34,16 +34,10 @@ init()
 function init() {
   shuffleDeck(gameDeck)
   splitDeck(gameDeck)
-  deck2El.classList.remove(removedCardPlayer)
-  deck3El.classList.remove(removedCardComp)
 
 }
 
-// function gameOver {
-//   if (playerDeck.length === 0 && computerDeck.length === 0){
-//     playerPoints
-//   }
-// }
+init()
 
 
 function shuffleDeck(array) {
@@ -215,6 +209,7 @@ function compareWar(player,comp){
     console.log("LOSS! Your forces have been overrun")
     console.log("Player card", player)
     console.log("Computer card", comp);
+    computerCaptured.push(player, comp)
     computerCaptured.push(...warZone)
     computerCaptured.push(computerPlayZone[0], playerPlayZone[0])
     console.log("Computer Win Pile", computerCaptured);
