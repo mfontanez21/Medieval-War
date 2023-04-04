@@ -8,13 +8,25 @@ body {
   font-family: 'MedievalSharp', cursive;
 }
 
-.container {
+.container1 {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: left;
 }
 
+.container2 {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.container3 {
+align-items: top;
+display: flex;
+justify-content: flex-end;
+}
 .card {
   margin: 3vh;
 }
@@ -30,9 +42,9 @@ body {
 .btn {
   margin-top: 2vh;
   color: white;
-  background-color: #202d7a;
+  background-color: #a86206;
   font-weight: bold;
-  border: 2px solid #202d7a;
+  border: 5px outset #774c29;
 }
 
 .resetBtn {
@@ -41,4 +53,6 @@ body {
   background-color: red;
   font-weight: bold;
   border: 2px, 4px solid red;
+  
+  
 }

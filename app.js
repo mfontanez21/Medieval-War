@@ -9,11 +9,11 @@ let playerCaptured = []
 let computerCaptured = []
 let warCaptured = []
 let warZone = []
+const toWar = new Audio
 // let playerPoints = playerCaptured(num)
 
+
 let gameDeck = ["d14","d12","d13","d11","d10","d09","d08","d07","d06","d05","d04","d03","d02","h14","h12","h13","h11","h10","h09","h08","h07","h06","h05","h04","h03","h02","c14","c12","c13","c11","c10","c09","c08","c07","c06","c05","c04","c03","c02","s14","s12","s13","s11","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
-
-
 
 
 // Cached element references \\
@@ -23,9 +23,11 @@ let deck3El = document.getElementById('deck-3')
 let deck4El = document.getElementById('deck-4')
 const resetBtnEl = document.getElementById("resetBtn")
 
+
 // Event listeners
 document.getElementById('btn').addEventListener('click', handleClickPlayer)
 resetBtnEl.addEventListener("click", init)
+
 
 
 // Functions \\
@@ -37,79 +39,53 @@ function init() {
 
 }
 
-init()
-
 
 function shuffleDeck(array) {
   for (let i = array.length - 1; i >= 0; i--) {
     const randomIndex = Math.floor(Math.random() * (i + 1));
     array.push(array[randomIndex]);
     array.splice(randomIndex, 1);
-}
-return array;
+  }
+  return array;
 }    
 
 shuffleDeck(gameDeck)
-console.log(gameDeck);
 
 function splitDeck(){
   playerDeck = gameDeck.slice(0, 26);
   computerDeck = gameDeck.slice(26, 52);
 }
 splitDeck(gameDeck)
-console.log(playerDeck);
-console.log(computerDeck);
-console.log(playerCaptured);
-console.log(computerCaptured);
 
 function handleClickPlayer() {
-  console.log("B Player Deck", playerDeck);
-  console.log("B Computer Deck", computerDeck);
-  console.log("B Player Points", playerCaptured);
-  console.log("B Computer Points", computerCaptured);
-
   if (playerDeck.length > 0) {  
-
 		let randIdx = Math.floor(Math.random()*playerDeck.length)
-  
 	  let cardPicked = playerDeck.splice(randIdx, 1)[0]
-
 		playerPlayZone.push(cardPicked) 
-
 		renderPlayer1(cardPicked)
+
     if (computerDeck.length > 0) {  
-      
       let randIdx = Math.floor(Math.random()*computerDeck.length)
-      
       let compCardPicked = computerDeck.splice(randIdx, 1)[0]
-
       computerPlayZone.push(compCardPicked) 
-
       renderPlayer2(compCardPicked)
-
-        if (cardPicked.slice(1) > compCardPicked.slice(1)){
-          playerCaptured.push(cardPicked)
-          playerCaptured.push(compCardPicked)
-        } else if (cardPicked.slice(1) < compCardPicked.slice(1)) {
-          
-          computerCaptured.push(compCardPicked)
-          computerCaptured.push(cardPicked)
-        } else 
+      if (cardPicked.slice(1) > compCardPicked.slice(1)){
+        playerCaptured.push(cardPicked)
+        playerCaptured.push(compCardPicked)
+      } else if (cardPicked.slice(1) < compCardPicked.slice(1)) {
+        computerCaptured.push(compCardPicked)
+        computerCaptured.push(cardPicked)
+      } else {
         goToWar()
         computerPlayZone = []
         playerPlayZone = []
       }
-      console.log("E Player Deck", playerDeck);
-      console.log("E Computer Deck", computerDeck);
-      console.log("E Player Points", playerCaptured);
-      console.log("E Computer Points", computerCaptured);
     }
-  } if (playerDeck.length === 0){
-    checkWinner()
-}
-  
-
-
+  }
+	if (playerDeck.length === 0)
+  checkWinner()
+} 
+    
 function renderPlayer1(cardPicked) {
   
   if (playerPlayZone.length === 1) {  
@@ -165,32 +141,24 @@ function renderPlayer2(compCardPicked) {
 
 
 function goToWar(){
-  let warCards 
-	let length = 0;
-
-
-	if (playerDeck.length < 5 || computerDeck.length < 5) {
-    length 
-	//if both decks have greater than four cards
-  } else {
-		length = 3;		
-	}
-
-	//take the cards from each deck and push them to the war array
+	if(playerDeck < 4 || computerDeck< 4){
+    if(playerDeck < 4) {
+      console.log(playerDeck);
+    }
+  }
 	for (let i = 0; i < length; i++) {
 		warZone.push(playerDeck[0]);
     playerDeck.shift();
 		warZone.push(computerDeck[0]);
 		computerDeck.shift();
-    console.log(warZone);
+    console.log("this is the warzone", warZone);
   }
-
-
     compareWar(playerDeck[0], computerDeck[0]);
-	}
+}
 
 
 function compareWar(player,comp){
+  toWar
   if((player.slice(1)) > (comp.slice(1))){
     console.log("Player card", player)
     console.log("Computer card", comp);
@@ -199,7 +167,6 @@ function compareWar(player,comp){
     playerCaptured.push(...warZone)
     playerCaptured.push(computerPlayZone[0], playerPlayZone[0])
     console.log("Player Points", playerCaptured);
-
     playerDeck.shift()
     computerDeck.shift()
     warZone = []
@@ -213,7 +180,6 @@ function compareWar(player,comp){
     computerCaptured.push(...warZone)
     computerCaptured.push(computerPlayZone[0], playerPlayZone[0])
     console.log("Computer Win Pile", computerCaptured);
-
     playerDeck.shift()
     computerDeck.shift()
     warZone = []
@@ -223,22 +189,21 @@ function compareWar(player,comp){
   else if ((player.slice(1)) === (comp.slice(1))){
     playerCaptured.push(warZone[0,1,2], player)
     computerCaptured.push(warZone[3,4,5], comp)
+    playerDeck.shift()
+    computerDeck.shift()
     warZone = []
     console.log("DRAW! Your soldiers live to fight another day");
   }
-  console.log("W Player Deck", playerDeck);
-  console.log("W Computer Deck", computerDeck);
-  console.log("W Player Points", playerCaptured);
-  console.log("W Computer Points", computerCaptured);
 }
 
 function checkWinner() {
-  console.log(playerCaptured.length)
-  console.log(computerCaptured.length)
+  console.log("Player Points", playerCaptured.length)
+  console.log("Computer Points", computerCaptured.length)
   if (playerCaptured.length > computerCaptured.length){
     console.log("You win! The winds of war blow in your favor");
-  } else {
+  } else if (playerCaptured.length < computerCaptured.length) {
     console.log("You lose! The enemy inches closer to total victory");
+  } else {
+    console.log("Stalemate! Reassess your plan of attack");
   }
 }
-
