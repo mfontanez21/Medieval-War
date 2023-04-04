@@ -65,9 +65,14 @@ function splitDeck(){
 splitDeck(gameDeck)
 console.log(playerDeck);
 console.log(computerDeck);
-
+console.log(playerCaptured);
+console.log(computerCaptured);
 
 function handleClickPlayer() {
+  console.log("B Player Deck", playerDeck);
+  console.log("B Computer Deck", computerDeck);
+  console.log("B Player Points", playerCaptured);
+  console.log("B Computer Points", computerCaptured);
 
   if (playerDeck.length > 0) {  
 
@@ -89,20 +94,24 @@ function handleClickPlayer() {
       renderPlayer2(compCardPicked)
 
         if (cardPicked.slice(1) > compCardPicked.slice(1)){
-          computerPlayZone.pop()
           playerCaptured.push(cardPicked)
           playerCaptured.push(compCardPicked)
         } else if (cardPicked.slice(1) < compCardPicked.slice(1)) {
-          playerPlayZone.pop()
+          
           computerCaptured.push(compCardPicked)
           computerCaptured.push(cardPicked)
         } else 
         goToWar()
+        computerPlayZone = []
+        playerPlayZone = []
       }
-      if (playerDeck.length === 0){
-        checkWinner()
+      console.log("E Player Deck", playerDeck);
+      console.log("E Computer Deck", computerDeck);
+      console.log("E Player Points", playerCaptured);
+      console.log("E Computer Points", computerCaptured);
     }
-  }
+  } if (playerDeck.length === 0){
+    checkWinner()
 }
   
 
@@ -192,14 +201,14 @@ function compareWar(player,comp){
     console.log("Player card", player)
     console.log("Computer card", comp);
     console.log("WIN! Your force CRUSHES the enemy battalion");
+    playerCaptured.push(player,comp)
     playerCaptured.push(...warZone)
-    playerCaptured.push(player, comp)
-    playerCaptured.push(...computerPlayZone, ...playerPlayZone)
+    playerCaptured.push(computerPlayZone[0], playerPlayZone[0])
     console.log("Player Points", playerCaptured);
 
     playerDeck.shift()
     computerDeck.shift()
-    warZone.length = 0;
+    warZone = []
     console.log(warZone);
     
   } else if ((player.slice(1)) < (comp.slice(1))) {
@@ -207,24 +216,30 @@ function compareWar(player,comp){
     console.log("Player card", player)
     console.log("Computer card", comp);
     computerCaptured.push(...warZone)
-    computerCaptured.push(player, comp)
-    computerCaptured.push(...computerPlayZone, ...playerPlayZone)
+    computerCaptured.push(computerPlayZone[0], playerPlayZone[0])
     console.log("Computer Win Pile", computerCaptured);
 
     playerDeck.shift()
     computerDeck.shift()
-    warZone.length = 0;
+    warZone = []
     console.log(warZone);
   }
 
   else if ((player.slice(1)) === (comp.slice(1))){
-    playerCaptured.push(warZone[0,1,2])
-    computerCaptured.push(warZone[3,4,5])
+    playerCaptured.push(warZone[0,1,2], player)
+    computerCaptured.push(warZone[3,4,5], comp)
+    warZone = []
     console.log("DRAW! Your soldiers live to fight another day");
   }
+  console.log("W Player Deck", playerDeck);
+  console.log("W Computer Deck", computerDeck);
+  console.log("W Player Points", playerCaptured);
+  console.log("W Computer Points", computerCaptured);
 }
 
 function checkWinner() {
+  console.log(playerCaptured.length)
+  console.log(computerCaptured.length)
   if (playerCaptured.length > computerCaptured.length){
     console.log("You win! The winds of war blow in your favor");
   } else {
