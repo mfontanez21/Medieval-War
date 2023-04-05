@@ -30,7 +30,9 @@ const audioBtn = document.getElementById("audioBtn")
 
 // Event listeners
 document.getElementById('btn').addEventListener('click', handleClickPlayer)
+document.getElementById("btn").addEventListener("click", makeAnimationGo)
 resetBtnEl.addEventListener("click", init)
+
 audioBtn.addEventListener("click", function(evt){
   backgroundMusic.volume = .05
   backgroundMusic.play()
@@ -249,3 +251,11 @@ function updateScore() {
 }
 
 
+function makeAnimationGo() {
+  deck2El.classList.remove("animate__animated", "animate__flipInY")
+  deck3El.classList.remove("animate__animated", "animate__flipInY")
+  deck2El.offsetHeight
+  deck3El.offsetHeight
+  deck2El.classList.add("animate__animated", "animate__flipInY")
+  deck3El.classList.add("animate__animated", "animate__flipInY")
+}
