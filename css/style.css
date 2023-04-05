@@ -1,5 +1,5 @@
 body {
-  background-color: #696969;
+  background-image: url(../images/background1.jpg);
   height: 90vh;
   /* width: 90vw; */
   font-family: 'MedievalSharp', cursive;
@@ -9,7 +9,6 @@ body {
   display: flex;
   flex-direction: column-reverse;
   justify-content: flex-end;
-  background-color: teal;
   /* if I want to remove the margin to the left of the deck add a width and height of 100% */
 }
 .redDeck{
