@@ -92,3 +92,14 @@ border-color: green;
   border: 5px outset black;
   display: flex;
 }
+
+.message{
+  display: flex;
+  margin-top: 2vh;
+  color: white;
+  background-color: green;
+  border: 10px inset black;
+  justify-content: center;
+  align-content: center;
+  
+}
