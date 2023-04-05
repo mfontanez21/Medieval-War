@@ -17,6 +17,21 @@ body {
   align-items: center;
 }
 
+#playerScore {
+  font-size: 26px;
+  background-color: white;
+  border: 5px inset #774c29;
+  opacity: 90%;
+  font-weight: bold;
+}
+
+#computerScore {
+  font-size: 26px;
+  background-color: white;
+  border: 5px inset #774c29;
+  opacity: 90%;
+  font-weight: bold;
+}
 
 .container2 {
   flex-direction: row;
@@ -42,6 +57,11 @@ justify-content: flex-end;
 
 .card.shadow {
   box-shadow: 7px 7px 7px 5px rgba(41, 41, 41, 0.95) !important;
+}
+
+.card.winner {
+border-radius: 100%;
+border-color: green;
 }
 
 .btn {

@@ -80,11 +80,16 @@ function handleClickPlayer() {
       computerPlayZone.push(compCardPicked) 
       renderPlayer2(compCardPicked)
       if (cardPicked.slice(1) > compCardPicked.slice(1)){
+        deck2El.classList.add("won")
+        deck3El.classList.remove("won")
         playerCaptured.push(cardPicked)
         playerCaptured.push(compCardPicked)
       } else if (cardPicked.slice(1) < compCardPicked.slice(1)) {
+        deck3El.classList.add("won")
+        deck2El.classList.remove("won")
         computerCaptured.push(compCardPicked)
         computerCaptured.push(cardPicked)
+
       } else {
         goToWar()
         computerPlayZone = []
@@ -231,5 +236,12 @@ console.log("Play Music");
 }
 
 
+function updateScore() {
+  const playerScore = playerCaptured.length
+  const computerScore = computerCaptured.length
 
+  playerScore.textContent = `Foes slain: ${playerScore}`;
+  computerScore.textContent = `Allies Lost: ${computerScore}`;
+}
 
+updateScore()
