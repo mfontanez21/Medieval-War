@@ -49,6 +49,8 @@ function init() {
   computerPlayZone = []
   playerCaptured = []
   computerCaptured = []
+  pScore.innerText = "Enemies Slain: 0"
+  cScore.innerText = "Allies Fallen: 0"
 }
 
 
