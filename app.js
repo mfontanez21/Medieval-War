@@ -241,8 +241,8 @@ console.log("Play Music");
 
 
 function updateScore() {
-  pScore.innerText = ("Player: ") + playerCaptured.length
-  cScore.innerText = ("Computer: ") + computerCaptured.length
+  pScore.innerText = ("Enemies Slain: ") + playerCaptured.length
+  cScore.innerText = ("Allies Fallen: ") + computerCaptured.length
 }
 
 
