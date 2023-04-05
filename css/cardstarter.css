@@ -314,10 +314,15 @@ background-image: url("../images/clubs/clubs-r02.svg"); }
   background-image: url("../images/backs/blue.svg"); }
 
 .card.back-blue {
-  background-image: url("../images/backs/blue.svg"); }
-
+  background-image: url("../images/backs/ComputerDeckBacks.png");
+  background-size: 300px;
+  
+}
 .card.back-red {
-  background-image: url("../images/backs/red.svg"); }
+  background-image: url("../images/backs/PlayerDeckBacks.png");
+  background-size: 300px;
+  
+}
 
 /* we can change the backs of the cards by adding a file here, then change it in the HTML
 

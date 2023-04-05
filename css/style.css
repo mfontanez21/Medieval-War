@@ -15,6 +15,7 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
+  
 }
 
 #playerScore {
@@ -63,6 +64,7 @@ justify-content: flex-end;
 border-radius: 100%;
 border-color: green;
 }
+
 
 .btn {
   margin-top: 2vh;
