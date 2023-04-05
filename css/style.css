@@ -1,32 +1,38 @@
 body {
   background-color: #696969;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 50vmax;
+  height: 90vh;
+  /* width: 90vw; */
   font-family: 'MedievalSharp', cursive;
 }
 
-.container1 {
+.container {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  background-color: teal;
+  /* if I want to remove the margin to the left of the deck add a width and height of 100% */
+}
+.redDeck{
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: left;
+  align-items: center;
 }
 
+
 .container2 {
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   display: flex;
+  
 }
 
 .container3 {
-align-items: top;
 display: flex;
+align-items: flex-start;
 justify-content: flex-end;
-}
+} 
+
 .card {
   margin: 3vh;
 }
@@ -52,7 +58,7 @@ justify-content: flex-end;
   color: white;
   background-color: red;
   font-weight: bold;
-  border: 2px, 4px solid red;
-  
+  border: 5px outset black;
+  display: flex;
   
 }

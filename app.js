@@ -34,9 +34,13 @@ resetBtnEl.addEventListener("click", init)
 init()
 
 function init() {
+  renderOnInit()
   shuffleDeck(gameDeck)
   splitDeck(gameDeck)
-
+  playerPlayZone = []
+  computerPlayZone = []
+  playerCaptured = []
+  computerCaptured = []
 }
 
 
@@ -139,6 +143,10 @@ function renderPlayer2(compCardPicked) {
   }
 }
 
+function renderOnInit(){
+  deck2El.className = "card xlarge outline"
+  deck3El.className = "card xlarge outline"
+}
 
 function goToWar(){
 	if(playerDeck < 4 || computerDeck< 4){
