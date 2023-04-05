@@ -11,7 +11,8 @@ let warCaptured = []
 let warZone = []
 const toWar = new Audio("../audio/warhorn.wav")
 const backgroundMusic = new Audio("../audio/backgroundmusic.mp3")
-
+let pScore = document.getElementById("playerScore")
+let cScore = document.getElementById("computerScore")
 
 let gameDeck = ["d14","d12","d13","d11","d10","d09","d08","d07","d06","d05","d04","d03","d02","h14","h12","h13","h11","h10","h09","h08","h07","h06","h05","h04","h03","h02","c14","c12","c13","c11","c10","c09","c08","c07","c06","c05","c04","c03","c02","s14","s12","s13","s11","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
 
@@ -68,6 +69,7 @@ function splitDeck(){
 splitDeck(gameDeck)
 
 function handleClickPlayer() {
+  
   if (playerDeck.length > 0) {  
 		let randIdx = Math.floor(Math.random()*playerDeck.length)
 	  let cardPicked = playerDeck.splice(randIdx, 1)[0]
@@ -97,6 +99,7 @@ function handleClickPlayer() {
       }
     }
   }
+  updateScore()
 	if (playerDeck.length === 0)
   checkWinner()
 } 
@@ -237,11 +240,8 @@ console.log("Play Music");
 
 
 function updateScore() {
-  const playerScore = playerCaptured.length
-  const computerScore = computerCaptured.length
-
-  playerScore.textContent = `Foes slain: ${playerScore}`;
-  computerScore.textContent = `Allies Lost: ${computerScore}`;
+  pScore.innerText = ("Player: ") + playerCaptured.length
+  cScore.innerText = ("Computer: ") + computerCaptured.length
 }
 
-updateScore()
+
