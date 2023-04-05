@@ -10,7 +10,7 @@ let computerCaptured = []
 let warCaptured = []
 let warZone = []
 const toWar = new Audio("../audio/warhorn.wav")
-const backgroundMusic = new Audio("../audio/backgroundmusic.mp3")
+const backgroundMusic = new Audio("../audio/trimmedmusic.mp3")
 let pScore = document.getElementById("playerScore")
 let cScore = document.getElementById("computerScore")
 let winMessage = document.getElementById("message")
@@ -51,6 +51,7 @@ function init() {
   computerCaptured = []
   pScore.innerText = "Enemies Slain: 0"
   cScore.innerText = "Allies Fallen: 0"
+  winMessage.innerText = "Continue the Assault!"
 }
 
 
