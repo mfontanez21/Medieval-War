@@ -96,11 +96,10 @@ border-color: green;
   margin-top: 2vh;
   color: white;
   background-color: green;
-  border: 10px inset black;
+  border: 5px inset black;
   justify-content: center;
   align-content: center;
   font-weight: bolder;
-  
 }
 
 #warReport{
