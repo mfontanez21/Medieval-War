@@ -16,10 +16,10 @@ As part of my Software Engineering Immersive cohort with General Assembly, we we
 - animate.css
 
 ## Credits:
-IngeDnD (https://imgur.com/user/ingednd/posts) for the background image 
-Sword favicon created by Freepik - Flaticon
-Michael Ghelfi Studios (https://michaelghelfi.bandcamp.com/) for the background ambient soundtrack
-/u/Persia029 on reddit for the card deck images
+- IngeDnD (https://imgur.com/user/ingednd/posts) for the background image 
+- Sword favicon created by Freepik - Flaticon
+- Michael Ghelfi Studios (https://michaelghelfi.bandcamp.com/) for the background ambient soundtrack
+- /u/Persia029 on reddit for the card deck images
 
 
 ## Stretch Goals:

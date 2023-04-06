@@ -19,7 +19,6 @@ let warReport = document.getElementById("warReport")
 
 let gameDeck = ["d14","d12","d13","d11","d10","d09","d08","d07","d06","d05","d04","d03","d02","h14","h12","h13","h11","h10","h09","h08","h07","h06","h05","h04","h03","h02","c14","c12","c13","c11","c10","c09","c08","c07","c06","c05","c04","c03","c02","s14","s12","s13","s11","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
 
-// let gameDeck = ["d14", "c14", "s14", "h14", "d13", "c13", "s13", "h13", "d12", "c12", "s12", "h12", "d11", "c11", "s11", "h11"]
 
 // Cached element references \\
 let deck1El = document.getElementById('deck-1')
@@ -106,8 +105,6 @@ function handleClickPlayer() {
         computerCaptured.push(cardPicked)
         computerPlayZone = []
         playerPlayZone = []
-        console.log(computerPlayZone);
-        console.log(playerPlayZone);
       } else {
         goToWar()
         computerPlayZone = []
@@ -201,7 +198,6 @@ function goToWar(){
     compareWar(playerDeck[0], computerDeck[0]);
 }
 
-console.log(warReport);
 function compareWar(player, comp){
   let warHero = player.toUpperCase()
   let warHeroComp = comp.toUpperCase()
@@ -231,8 +227,6 @@ function compareWar(player, comp){
       warZoneC = []
       
     } else if (parseInt(player.slice(1)) === parseInt(comp.slice(1))) {
-      console.log(player);
-      console.log(comp);
       warReport.innerText = "War Report: DRAW! Your soldiers live to fight another day"
       playerCaptured.push(player)
       computerCaptured.push(comp)
@@ -248,8 +242,6 @@ function compareWar(player, comp){
 }
 
 function checkWinner() {
-  console.log("Player Points", playerCaptured.length)
-  console.log("Computer Points", computerCaptured.length)
   if (playerCaptured.length > computerCaptured.length){
     winMessage.innerText = "You win! The winds of war blow in your favor"
   } else if (playerCaptured.length < computerCaptured.length) {
@@ -262,7 +254,6 @@ function checkWinner() {
 function playAudio () {
   let mySound = new Audio('backgroundmusic.mp3');
 mySound.play()
-console.log("Play Music");
 }
 
 
