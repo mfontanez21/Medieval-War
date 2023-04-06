@@ -101,6 +101,7 @@ border-color: green;
   border: 10px inset black;
   justify-content: center;
   align-content: center;
+  font-weight: bolder;
   
 }
 
@@ -110,6 +111,7 @@ border-color: green;
   justify-content: center;
   display: flex;
   background-color: yellow;
+  font-weight: bolder;
 }
 
 .card.won{
