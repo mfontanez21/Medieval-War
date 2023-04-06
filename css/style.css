@@ -1,7 +1,6 @@
 body {
   background-image: url(../images/background1.jpg);
   height: 90vh;
-  /* width: 90vw; */
   font-family: 'MedievalSharp', cursive;
 }
 
@@ -9,7 +8,6 @@ body {
   display: flex;
   flex-direction: column-reverse;
   justify-content: flex-end;
-  /* if I want to remove the margin to the left of the deck add a width and height of 100% */
 }
 .redDeck{
   display: flex;
@@ -117,3 +115,12 @@ border-color: green;
 .card.won{
   border: 0.15em solid green;
 }
+
+.resetBtn:hover{
+  color: black;
+}
+
+.audioBtn:hover{
+  color: black;
+}
+
