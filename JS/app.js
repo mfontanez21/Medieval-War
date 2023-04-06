@@ -227,7 +227,7 @@ function compareWar(player, comp){
       warZoneC = []
       
     } else if (parseInt(player.slice(1)) === parseInt(comp.slice(1))) {
-      warReport.innerText = "War Report: DRAW! Your soldiers live to fight another day"
+      warReport.innerText = `War Report: DRAW! Your soldiers (${warHero}) fight to a standstill (${warHeroComp})`
       playerCaptured.push(player)
       computerCaptured.push(comp)
       playerCaptured.push(...warZoneP)
