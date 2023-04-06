@@ -7,7 +7,6 @@ let removedCardPlayer
 let removedCardComp
 let playerCaptured = []
 let computerCaptured = []
-let warCaptured = []
 let warZoneP = []
 let warZoneC = []
 const toWar = new Audio("../audio/warhorn.wav")
