@@ -77,7 +77,7 @@ function splitDeck(){
 
 
 function handleClickPlayer() {
-  
+  warReport.innerText = "War Report: "
   if (playerDeck.length > 0) {  
 		let randIdx = Math.floor(Math.random()*playerDeck.length)
 	  let cardPicked = playerDeck.splice(randIdx, 1)[0]
