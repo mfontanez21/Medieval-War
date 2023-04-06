@@ -18,6 +18,7 @@ let warReport = document.getElementById("warReport")
 
 let gameDeck = ["d14","d12","d13","d11","d10","d09","d08","d07","d06","d05","d04","d03","d02","h14","h12","h13","h11","h10","h09","h08","h07","h06","h05","h04","h03","h02","c14","c12","c13","c11","c10","c09","c08","c07","c06","c05","c04","c03","c02","s14","s12","s13","s11","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
 
+// let gameDeck = ["d14", "c14", "s14", "h14", "c14", "c13", ""]
 
 // Cached element references \\
 let deck1El = document.getElementById('deck-1')
@@ -55,6 +56,7 @@ function init() {
   pScore.innerText = "Enemies Slain: 0"
   cScore.innerText = "Allies Fallen: 0"
   winMessage.innerText = "Continue the Assault!"
+  warReport.innerText = "War Report: "
 }
 
 
@@ -67,13 +69,16 @@ function shuffleDeck(array) {
   return array;
 }    
 
-shuffleDeck(gameDeck)
+
+
+console.log(playerDeck);
+console.log(computerDeck);
 
 function splitDeck(){
   playerDeck = gameDeck.slice(0, 26);
   computerDeck = gameDeck.slice(26, 52);
 }
-splitDeck(gameDeck)
+
 
 function handleClickPlayer() {
   
@@ -83,22 +88,30 @@ function handleClickPlayer() {
 		playerPlayZone.push(cardPicked) 
 		renderPlayer1(cardPicked)
 
+    console.log(playerPlayZone);
+
     if (computerDeck.length > 0) {  
       let randIdx = Math.floor(Math.random()*computerDeck.length)
       let compCardPicked = computerDeck.splice(randIdx, 1)[0]
       computerPlayZone.push(compCardPicked) 
       renderPlayer2(compCardPicked)
+      console.log(computerPlayZone);
+
       if (cardPicked.slice(1) > compCardPicked.slice(1)){
         deck2El.classList.add("won")
         deck3El.classList.remove("won")
         playerCaptured.push(cardPicked)
         playerCaptured.push(compCardPicked)
+        playerPlayZone = []
+        computerPlayZone = []
       } else if (cardPicked.slice(1) < compCardPicked.slice(1)) {
         deck3El.classList.add("won")
         deck2El.classList.remove("won")
         computerCaptured.push(compCardPicked)
         computerCaptured.push(cardPicked)
-
+        computerPlayZone = []
+        playerPlayZone = []
+        console.log(computerPlayZone);
       } else {
         goToWar()
         computerPlayZone = []
@@ -174,10 +187,10 @@ function renderOnInit(){
 function goToWar(){
   toWar.volume = .10
   toWar.play()
-	if(playerDeck < 4 || computerDeck < 4){
-    if(playerDeck < 4) {
-    }
-  if (playerDeck === 0 || computerDeck === 0){
+  let length = 3
+	if(playerDeck.length < 4 || computerDeck.length < 4){
+    length = playerDeck.length - 1
+  if (playerDeck.length === 0 || computerDeck.length === 0){
     playerCaptured.push(playerPlayZone)
     computerCaptured.push(computerPlayZone)
   }
@@ -187,39 +200,40 @@ function goToWar(){
     playerDeck.shift();
 		warZone.push(computerDeck[0]);
 		computerDeck.shift();
-    console.log("this is the warzone", warZone);
+    console.log(warZone)
   }
     compareWar(playerDeck[0], computerDeck[0]);
 }
 
+console.log(warReport);
+function compareWar(player, comp){
 
-function compareWar(player,comp){
-  
-  if((player.slice(1)) > (comp.slice(1))){
-    warReport.innertext = "War Report: WIN! Your force CRUSHES the enemy battalion"
-    playerCaptured.push(player,comp)
+  if(parseInt(player.slice(1)) > parseInt(comp.slice(1))) {
+    warReport.innerText = "War Report: WIN! Your force CRUSHES the enemy battalion"
+    playerCaptured.push(player)
+    playerCaptured.push(comp)
     playerCaptured.push(...warZone)
     playerCaptured.push(computerPlayZone[0], playerPlayZone[0])
-    playerDeck.shift()
-    computerDeck.shift()
+    playerDeck.shift(player)
+    computerDeck.shift(comp)
     warZone = []
     
     
-  } else if ((player.slice(1)) < (comp.slice(1))) {
-    warReport.innertext = "War Report: LOSS! Your forces have been overrun"
+  } else if (parseInt(player.slice(1)) < parseInt(comp.slice(1))) {
+    warReport.innerText = "War Report: LOSS! Your forces have been overrun"
     computerCaptured.push(player, comp)
     computerCaptured.push(...warZone)
     computerCaptured.push(computerPlayZone[0], playerPlayZone[0])
-    playerDeck.shift()
-    computerDeck.shift()
+    playerDeck.shift(player)
+    computerDeck.shift(comp)
     warZone = []
     
-  } else if ((player.slice(1)) === (comp.slice(1))){
-    warReport.innertext = "War Report: DRAW! Your soldiers live to fight another day"
+  } else if (parseInt(player.slice(1)) === parseInt(comp.slice(1))) {
+    warReport.innerText = "War Report: DRAW! Your soldiers live to fight another day"
     playerCaptured.push(warZone[0,1,2], player)
     computerCaptured.push(warZone[3,4,5], comp)
-    playerDeck.shift()
-    computerDeck.shift()
+    playerDeck.shift(player)
+    computerDeck.shift(comp)
     warZone = []
     
   }

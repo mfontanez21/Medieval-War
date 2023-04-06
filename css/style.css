@@ -111,3 +111,7 @@ border-color: green;
   display: flex;
   background-color: yellow;
 }
+
+.card.won{
+  border: 0.15em solid yellow;
+}
