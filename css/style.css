@@ -22,6 +22,7 @@ body {
   border: 5px inset #774c29;
   opacity: 90%;
   font-weight: bold;
+  text-align: center;
 }
 
 #computerScore {
@@ -30,6 +31,7 @@ body {
   border: 5px inset #774c29;
   opacity: 90%;
   font-weight: bold;
+  text-align: center;
 }
 
 .container2 {
@@ -67,15 +69,15 @@ border-color: green;
 .btn {
   margin-top: 2vh;
   color: white;
-  background-color: #a86206;
+  background-color: #75472d;
   font-weight: bold;
-  border: 5px outset #774c29;
+  border: 5px outset black;
 }
 
 .resetBtn {
   margin-top: 2vh;
   color: white;
-  background-color: red;
+  background-color: #830101;
   font-weight: bold;
   border: 5px outset black;
   display: flex;
@@ -85,7 +87,7 @@ border-color: green;
 .audioBtn{
   margin-top: 2vh;
   color: white;
-  background-color: rgb(8, 156, 241);
+  background-color: rgb(65, 81, 90);
   font-weight: bold;
   border: 5px outset black;
   display: flex;
@@ -94,9 +96,9 @@ border-color: green;
 .message{
   display: flex;
   margin-top: 2vh;
-  color: white;
-  background-color: green;
-  border: 5px inset black;
+  color: black;
+  background-color: #72823b;
+  border: 2px black solid;
   justify-content: center;
   align-content: center;
   font-weight: bolder;
@@ -107,8 +109,12 @@ border-color: green;
   align-items: flex-start;
   justify-content: center;
   display: flex;
-  background-color: yellow;
+  background-color:  #8A9198;
   font-weight: bolder;
+  text-align: center;
+  opacity: 90%;
+  color: #830101;
+  font-size: 20px;
 }
 
 .card.won{

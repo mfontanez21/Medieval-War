@@ -55,7 +55,7 @@ function init() {
   computerCaptured = []
   pScore.innerText = "Enemies Slain: 0"
   cScore.innerText = "Allies Fallen: 0"
-  winMessage.innerText = "Continue the Assault!"
+  winMessage.innerText = "Battle Status: Continue the Assault!"
   warReport.innerText = "War Report: "
 }
 
@@ -178,7 +178,7 @@ function renderOnInit(){
 }
 
 function goToWar(){
-  toWar.volume = .10
+  toWar.volume = .25
   toWar.play()
   let length = 3
 	if(playerDeck.length < 4 || computerDeck.length < 4){
@@ -243,11 +243,11 @@ function compareWar(player, comp){
 
 function checkWinner() {
   if (playerCaptured.length > computerCaptured.length){
-    winMessage.innerText = "You win! The winds of war blow in your favor"
+    winMessage.innerText = "Battle Stauts: You win! The winds of war blow in your favor"
   } else if (playerCaptured.length < computerCaptured.length) {
-    winMessage.innerText = "You lose! The enemy inches closer to total victory"
+    winMessage.innerText = "Battle Stauts: You lose! The enemy inches closer to total victory"
   } else {
-    winMessage.innerText = "Stalemate! Reassess your plan of attack";
+    winMessage.innerText = "Battle Stauts: Stalemate! Reassess your plan of attack";
   }
 }
 
