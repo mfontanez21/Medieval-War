@@ -28,6 +28,7 @@ War is a simple card game! You begin by shuffling the deck and dealing 26 cards 
 - Michael Ghelfi Studios (https://michaelghelfi.bandcamp.com/) for the background ambient soundtrack
 - /u/Persia029 on Reddit for the card deck images
 - Card images provided by General Assembly (https://github.com/SEI-Remote/css-card-deck)
+- The Fisher–Yates shuffle algorithm is used for the decks. You can find out more about the Fisher-Yates algorithm [here](https://bost.ocks.org/mike/shuffle/)
 
 
 ## Stretch Goals:
