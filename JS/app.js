@@ -80,7 +80,7 @@ function handleClickPlayer() {
   warReport.innerText = "War Report: "
   if (playerDeck.length > 0) {  
 		let randIdx = Math.floor(Math.random()*playerDeck.length)
-	let cardPicked = playerDeck.splice(randIdx, 1)[0]
+	  let cardPicked = playerDeck.splice(randIdx, 1)[0]
 		playerPlayZone.push(cardPicked) 
 		renderPlayer1(cardPicked)
 
@@ -139,11 +139,10 @@ function renderPlayer1(cardPicked) {
   if (playerDeck.length === 0) {  
     deck1El.classList.add("outline");
     deck1El.classList.remove("back-red");
-
+  }
   if (playerPlayZone.length === 0){
     deck2El.classList.add("outline")
   }
-}
 }
 
 function renderPlayer2(compCardPicked) {
@@ -184,10 +183,10 @@ function goToWar(){
   let length = 3
 	if(playerDeck.length < 4 || computerDeck.length < 4){
     length = playerDeck.length - 1
-  if (playerDeck.length === 0 || computerDeck.length === 0){
-    playerCaptured.push(playerPlayZone)
-    computerCaptured.push(computerPlayZone)
-  }
+    if (playerDeck.length === 0 || computerDeck.length === 0){
+      playerCaptured.push(playerPlayZone)
+      computerCaptured.push(computerPlayZone)
+    }
   }
 	for (let i = 0; i < length; i++) {
 		warZoneP.push(playerDeck[0]);
@@ -196,49 +195,49 @@ function goToWar(){
 		computerDeck.shift();
 
   }
-    compareWar(playerDeck[0], computerDeck[0]);
+  compareWar(playerDeck[0], computerDeck[0]);
 }
 
 function compareWar(player, comp){
   let warHero = player.toUpperCase()
   let warHeroComp = comp.toUpperCase()
-    if(parseInt(player.slice(1)) > parseInt(comp.slice(1))) {
-      warReport.innerText = `War Report: WIN! Your force (${warHero}) CRUSHES the enemy battalion (${warHeroComp})`
-      playerCaptured.push(player)
-      playerCaptured.push(comp)
-      playerCaptured.push(...warZoneP)
-      playerCaptured.push(...warZoneC)
-      playerCaptured.push(computerPlayZone[0], playerPlayZone[0])
-      playerDeck.shift(player)
-      computerDeck.shift(comp)
-      warZoneP = []
-      warZoneC = []
-      
-      
-    } else if (parseInt(player.slice(1)) < parseInt(comp.slice(1))) {
-      warReport.innerText = `War Report: LOSS! Your forces (${warHero}) have been overrun (${warHeroComp})`
-      computerCaptured.push(player)
-      computerCaptured.push(comp)
-      computerCaptured.push(...warZoneC)
-      computerCaptured.push(...warZoneP)
-      computerCaptured.push(computerPlayZone[0], playerPlayZone[0])
-      playerDeck.shift(player)
-      computerDeck.shift(comp)
-      warZoneP = []
-      warZoneC = []
-      
-    } else if (parseInt(player.slice(1)) === parseInt(comp.slice(1))) {
-      warReport.innerText = `War Report: DRAW! Your soldiers (${warHero}) fight to a standstill (${warHeroComp})`
-      playerCaptured.push(player)
-      computerCaptured.push(comp)
-      playerCaptured.push(...warZoneP)
-      computerCaptured.push(...warZoneC)
-      playerCaptured.push(...playerPlayZone)
-      computerCaptured.push (...computerPlayZone)
-      playerDeck.shift(player)
-      computerDeck.shift(comp)
-      warZoneP = []
-      warZoneC = []
+  if(parseInt(player.slice(1)) > parseInt(comp.slice(1))) {
+    warReport.innerText = `War Report: WIN! Your force (${warHero}) CRUSHES the enemy battalion (${warHeroComp})`
+    playerCaptured.push(player)
+    playerCaptured.push(comp)
+    playerCaptured.push(...warZoneP)
+    playerCaptured.push(...warZoneC)
+    playerCaptured.push(computerPlayZone[0], playerPlayZone[0])
+    playerDeck.shift(player)
+    computerDeck.shift(comp)
+    warZoneP = []
+    warZoneC = []
+    
+    
+  } else if (parseInt(player.slice(1)) < parseInt(comp.slice(1))) {
+    warReport.innerText = `War Report: LOSS! Your forces (${warHero}) have been overrun (${warHeroComp})`
+    computerCaptured.push(player)
+    computerCaptured.push(comp)
+    computerCaptured.push(...warZoneC)
+    computerCaptured.push(...warZoneP)
+    computerCaptured.push(computerPlayZone[0], playerPlayZone[0])
+    playerDeck.shift(player)
+    computerDeck.shift(comp)
+    warZoneP = []
+    warZoneC = []
+    
+  } else if (parseInt(player.slice(1)) === parseInt(comp.slice(1))) {
+    warReport.innerText = `War Report: DRAW! Your soldiers (${warHero}) fight to a standstill (${warHeroComp})`
+    playerCaptured.push(player)
+    computerCaptured.push(comp)
+    playerCaptured.push(...warZoneP)
+    computerCaptured.push(...warZoneC)
+    playerCaptured.push(...playerPlayZone)
+    computerCaptured.push (...computerPlayZone)
+    playerDeck.shift(player)
+    computerDeck.shift(comp)
+    warZoneP = []
+    warZoneC = []
   }
 }
 
@@ -254,7 +253,7 @@ function checkWinner() {
 
 function playAudio () {
   let mySound = new Audio('backgroundmusic.mp3');
-mySound.play()
+  mySound.play()
 }
 
 
