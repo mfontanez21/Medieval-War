@@ -80,7 +80,7 @@ function handleClickPlayer() {
   warReport.innerText = "War Report: "
   if (playerDeck.length > 0) {  
 		let randIdx = Math.floor(Math.random()*playerDeck.length)
-	  let cardPicked = playerDeck.splice(randIdx, 1)[0]
+	let cardPicked = playerDeck.splice(randIdx, 1)[0]
 		playerPlayZone.push(cardPicked) 
 		renderPlayer1(cardPicked)
 
@@ -121,6 +121,7 @@ function renderPlayer1(cardPicked) {
   
   if (playerPlayZone.length === 1) {  
     deck2El.classList.remove("outline")
+    
   }
 
   if (playerDeck.length >= 0) {  
@@ -243,11 +244,11 @@ function compareWar(player, comp){
 
 function checkWinner() {
   if (playerCaptured.length > computerCaptured.length){
-    winMessage.innerText = "Battle Stauts: You win! The winds of war blow in your favor"
+    winMessage.innerText = "Battle Status: You win! The winds of war blow in your favor"
   } else if (playerCaptured.length < computerCaptured.length) {
-    winMessage.innerText = "Battle Stauts: You lose! The enemy inches closer to total victory"
+    winMessage.innerText = "Battle Status: You lose! The enemy inches closer to total victory"
   } else {
-    winMessage.innerText = "Battle Stauts: Stalemate! Reassess your plan of attack";
+    winMessage.innerText = "Battle Status: Stalemate! Reassess your plan of attack";
   }
 }
 
